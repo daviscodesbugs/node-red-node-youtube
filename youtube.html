@@ -286,3 +286,83 @@
         }
     });
 </script>
+
+
+<script type="text/x-red" data-template-name="YouTube Subscriptions">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-config"><i class="fa fa-user"></i> APIKey</label>
+        <input type="text" id="node-input-config">
+    </div>
+
+    <div class="form-row node-input-part">
+        <label for="node-input-part"><i class="fa fa-list-ul"></i> part</label>
+        <select id="node-input-part" style="width:125px !important">
+          <option value="snippet">snippet</option>
+          <option value="id">id</option>
+          <option value="contentDetails">contentDetails</option>
+          <option value="subscriberSnippet">subscriberSnippet</option>
+        </select>
+    </div>
+
+    <div class="form-row node-input-channelId">
+         <label for="node-input-channelId"><i class="fa fa-tag"></i> channelId</label>
+         <input type="text" id="node-input-channelId" placeholder="channelId">
+    </div>
+
+    <div class="form-row node-input-subscriptionId">
+        <label for="node-input-subscriptionId"><i class="fa fa-tag"></i> subscriptionId</label>
+        <input type="text" id="node-input-subscriptionId" placeholder="subscriptionId">
+   </div>
+
+    <div class="form-row node-input-maxResults">
+         <label for="node-input-maxResults"><i class="fa fa-tag"></i> maxResults</label>
+         <input type="text" id="node-input-maxResults" placeholder="maxResults (0-50)">
+    </div>
+
+    <div class="form-row node-input-order">
+        <label for="node-input-order"><i class="fa fa-list-ul"></i> order</label>
+        <select id="node-input-order" style="width:125px !important">
+            <option value="alphabetical">alphabetical</option>
+            <option value="relevance">relevance</option>
+            <option value="unread">unread</option>
+        </select>
+    </div>
+
+    <div class="form-row node-input-pageToken">
+         <label for="node-input-pageToken"><i class="fa fa-tag"></i> pageToken</label>
+         <input type="text" id="node-input-pageToken" placeholder="pageToken">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="YouTube Subscriptions">
+    <p>Returns subscription resources that match the API request criteria.</p>
+    <p>See <a href="https://developers.google.com/youtube/v3/docs/subscriptions/list">Youtube Data API Subscriptions List</a></p>
+</script>
+
+<script type="text/javascript">
+    RED.nodes.registerType('YouTube Subscriptions', {
+        category: 'social',
+        color:"#C0DEED",
+        defaults: {
+        	config: { type:"google-config", required: true },
+            part: { value: "snippet", required: true },
+            channelId: { value: "" },
+            subscriptionId: { value: "" },
+            maxResults: { value: 5 },
+            order: { value: "relevance" },
+            pageToken: { value: "" },
+            name: { value: "" }
+        },
+        inputs:1,
+        outputs:1,
+        icon: "youtube.png",
+        label: function() {
+            return this.name ? "YT " + this.name : "Subscriptions";
+        }
+    });
+</script>
